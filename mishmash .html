@@ -1,0 +1,743 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מפגש עצמאות 🍋</title>
+<style>
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "SF Pro Text", "Roboto", sans-serif;
+}
+:root {
+  --sky:   #E0F7FA;
+  --sky3:  #F0FDFF;
+  --aqua:  #00BCD4;
+  --aqua2: #0097A7;
+  --aqua3: #006064;
+  --sun:   #FFD600;
+  --sun2:  #FFF176;
+  --white: #FFFFFF;
+  --dark:  #003338;
+  --mid:   #005F67;
+  --soft:  #4DB6C4;
+  --border:#B2EBF2;
+  --card:  #FFFFFFEE;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--sky3);
+  color: var(--dark);
+  direction: rtl;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.bg { position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden; }
+.blob { position:absolute;border-radius:50%;filter:blur(72px);opacity:.38;animation:drift ease-in-out infinite alternate; }
+.b1{width:500px;height:500px;background:#B2EBF2;top:-180px;right:-160px;animation-duration:11s;}
+.b2{width:380px;height:380px;background:#FFF9C4;bottom:-130px;left:-100px;animation-duration:14s;animation-delay:-5s;}
+.b3{width:280px;height:280px;background:#B2DFDB;top:45%;left:48%;animation-duration:17s;animation-delay:-8s;}
+@keyframes drift{from{transform:translate(0,0)scale(1)}to{transform:translate(28px,38px)scale(1.07)}}
+.lemons{position:absolute;inset:0;}
+.lf{position:absolute;opacity:0;animation:rise linear infinite;}
+@keyframes rise{0%{opacity:0;transform:translateY(0)rotate(0deg)}7%{opacity:.15}90%{opacity:.15}100%{opacity:0;transform:translateY(-108vh)rotate(360deg)}}
+.page{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 18px 100px;}
+header{margin:0 -18px;}
+.hero{background:linear-gradient(155deg,#003D40 0%,#00696E 42%,#00ACC1 100%);padding:64px 40px 82px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;width:700px;height:700px;top:-260px;left:50%;transform:translateX(-50%);background:conic-gradient(from 0deg,transparent 0deg,rgba(255,214,0,.11) 8deg,transparent 16deg,transparent 24deg,rgba(255,214,0,.08) 32deg,transparent 40deg,transparent 48deg,rgba(255,214,0,.11) 56deg,transparent 64deg,transparent 72deg,rgba(255,214,0,.08) 80deg,transparent 88deg,transparent 96deg,rgba(255,214,0,.11) 104deg,transparent 112deg,transparent 120deg,rgba(255,214,0,.08) 128deg,transparent 136deg,transparent 144deg,rgba(255,214,0,.11) 152deg,transparent 160deg,transparent 168deg,rgba(255,214,0,.08) 176deg,transparent 360deg);pointer-events:none;}
+.hero-lem-l{position:absolute;bottom:-10px;left:16px;font-size:9rem;opacity:.15;transform:rotate(-20deg);pointer-events:none;}
+.hero-lem-r{position:absolute;top:8px;right:14px;font-size:7rem;opacity:.15;transform:rotate(32deg);pointer-events:none;}
+.hero-inner{position:relative;z-index:1;}
+.flag-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:26px;}
+.stripe{width:62px;height:3px;background:var(--sun);border-radius:2px;}
+h1{font-size:clamp(3.2rem,10vw,5.8rem);font-weight:800;color:white;line-height:1.0;letter-spacing:-1px;text-shadow:0 4px 28px rgba(0,40,44,.4);}
+h1 mark{background:var(--sun);color:var(--dark);border-radius:10px;padding:0 10px 2px;display:inline-block;text-shadow:none;box-shadow:0 3px 14px rgba(255,214,0,.5);}
+.wave{display:block;width:calc(100% + 36px);margin:-2px -18px 0;}
+.sync-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;background:rgba(0,188,212,.1);border-bottom:1px solid var(--border);font-size:.82rem;font-weight:700;color:var(--aqua2);position:sticky;top:0;z-index:99;backdrop-filter:blur(12px);}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:#4CAF50;flex-shrink:0;animation:pulse 2s ease infinite;}
+.sync-dot.loading{background:var(--sun);animation:spin 1s linear infinite;}
+.sync-dot.error{background:#EF5350;animation:none;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.sec{display:flex;align-items:center;gap:14px;margin:50px 0 20px;}
+.sec-l{flex:1;height:2px;background:linear-gradient(to left,transparent,var(--aqua));border-radius:2px;}
+.sec-r{flex:1;height:2px;background:linear-gradient(to right,transparent,var(--aqua));border-radius:2px;}
+.sec-t{font-size:1.2rem;font-weight:800;color:var(--aqua2);white-space:nowrap;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:16px;}
+.card{background:var(--card);border:2px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:0 4px 20px rgba(0,96,100,.1);animation:pop .5s cubic-bezier(.34,1.56,.64,1) both;transition:transform .2s,box-shadow .2s;backdrop-filter:blur(8px);}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 36px rgba(0,96,100,.17);}
+@keyframes pop{from{opacity:0;transform:scale(.88)translateY(18px)}to{opacity:1;transform:scale(1)translateY(0)}}
+.card:nth-child(1){animation-delay:.04s}.card:nth-child(2){animation-delay:.09s}.card:nth-child(3){animation-delay:.13s}.card:nth-child(4){animation-delay:.17s}.card:nth-child(5){animation-delay:.21s}.card:nth-child(6){animation-delay:.25s}.card:nth-child(7){animation-delay:.29s}.card:nth-child(8){animation-delay:.33s}
+.ch{padding:14px 18px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;}
+.ch::after{content:'';position:absolute;top:-50%;right:-20%;width:110px;height:110px;background:rgba(255,255,255,.08);border-radius:50%;}
+.c-savory{background:linear-gradient(120deg,#00838F,#005F64);}
+.c-eggs{background:linear-gradient(120deg,#EF6C00,#BF360C);}
+.c-sweet{background:linear-gradient(120deg,#AD1457,#6A0F37);}
+.c-soft{background:linear-gradient(120deg,#1565C0,#0D47A1);}
+.c-alc{background:linear-gradient(120deg,#6A1B9A,#38006B);}
+.c-tables{background:linear-gradient(120deg,#2E7D32,#1A4A1C);}
+.c-gear{background:linear-gradient(120deg,#4E342E,#2C1810);}
+.c-kfood{background:linear-gradient(120deg,#C62828,#7F0000);}
+.c-kfun{background:linear-gradient(120deg,#558B2F,#2E5A0E);}
+.c-ico{width:36px;height:36px;background:rgba(255,255,255,.18);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;}
+.c-ttl{font-size:1.05rem;font-weight:800;color:white;text-shadow:0 1px 4px rgba(0,0,0,.2);}
+.c-body{padding:4px 0 2px;}
+.irow{display:flex;align-items:center;gap:10px;padding:9px 16px;border-bottom:1px solid rgba(178,235,242,.5);transition:background .13s;}
+.irow:last-of-type{border-bottom:none;}
+.irow:hover{background:var(--sky);}
+.ie{font-size:1rem;flex-shrink:0;}
+.in{flex:1;font-size:.9rem;font-weight:600;color:var(--mid);}
+select.fam{appearance:none;-webkit-appearance:none;border:2px solid var(--border);border-radius:10px;padding:5px 10px 5px 24px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Roboto",sans-serif;font-size:.76rem;font-weight:700;color:var(--soft);background:#E0F7FA;cursor:pointer;min-width:90px;max-width:128px;transition:all .18s;background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234DB6C4' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 7px center;direction:rtl;}
+select.fam:focus{outline:none;border-color:var(--aqua);background:white;}
+select.fam.taken{border-color:var(--aqua2);background:rgba(0,188,212,.12);color:var(--aqua3);}
+.addr{padding:9px 14px 13px;border-top:2px dashed rgba(178,235,242,.8);}
+.addf{display:flex;gap:6px;align-items:center;}
+.ade{width:40px;height:34px;border:2px solid var(--border);border-radius:10px;font-size:1rem;text-align:center;background:#E0F7FA;flex-shrink:0;transition:border-color .18s;}
+.ade:focus{outline:none;border-color:var(--aqua);background:white;}
+.adi{flex:1;height:34px;border:2px solid var(--border);border-radius:10px;padding:0 11px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Roboto",sans-serif;font-size:.83rem;font-weight:600;color:var(--dark);background:#E0F7FA;direction:rtl;transition:border-color .18s;}
+.adi::placeholder{color:var(--soft);font-weight:400;}
+.adi:focus{outline:none;border-color:var(--aqua);background:white;}
+.adb{width:34px;height:34px;flex-shrink:0;background:linear-gradient(135deg,var(--aqua),var(--aqua2));border:none;border-radius:10px;color:white;font-size:1.5rem;font-weight:300;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,188,212,.4);transition:transform .12s;}
+.adb:hover{transform:scale(1.08);}
+.adb:active{transform:scale(.92);}
+.sumwrap{margin-top:58px;animation:pop .6s .2s ease both;}
+.sumcard{background:linear-gradient(155deg,#002F33 0%,#005F67 55%,#0097A7 100%);border-radius:26px;padding:38px 34px 32px;position:relative;overflow:hidden;box-shadow:0 12px 52px rgba(0,48,52,.32);}
+.sumcard::before{content:'🍋';position:absolute;font-size:11rem;bottom:-30px;left:4px;opacity:.06;transform:rotate(-24deg);pointer-events:none;}
+.sumcard::after{content:'🍋';position:absolute;font-size:7rem;top:-6px;right:12px;opacity:.06;transform:rotate(28deg);pointer-events:none;}
+.sum-glow{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(255,214,0,.1) 0%,transparent 65%);top:-150px;left:50%;transform:translateX(-50%);pointer-events:none;}
+.sum-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:12px;position:relative;z-index:1;}
+.sum-ttl{font-size:1.85rem;font-weight:800;color:white;}
+.sum-ttl span{color:var(--sun);}
+.clrbtn{background:rgba(255,214,0,.14);border:2px solid rgba(255,214,0,.32);color:#FFF176;border-radius:12px;padding:7px 18px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Roboto",sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;transition:background .18s;}
+.clrbtn:hover{background:rgba(255,214,0,.24);}
+.plbl{display:flex;justify-content:space-between;font-size:.77rem;color:rgba(255,255,255,.45);margin-bottom:7px;font-weight:700;position:relative;z-index:1;}
+.pbg{height:6px;background:rgba(255,255,255,.12);border-radius:6px;overflow:hidden;margin-bottom:26px;position:relative;z-index:1;}
+.pfil{height:100%;background:linear-gradient(to left,var(--sun),var(--aqua));border-radius:6px;transition:width .42s ease;}
+.slist{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(192px,1fr));gap:10px;position:relative;z-index:1;}
+.si{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.13);border-radius:15px;padding:13px 15px;transition:background .15s,transform .15s;}
+.si:hover{background:rgba(255,255,255,.12);transform:translateY(-1px);}
+.sf{font-weight:800;font-size:.84rem;color:var(--sun);margin-bottom:5px;}
+.sit{font-size:.79rem;color:rgba(255,255,255,.75);font-weight:600;line-height:1.72;}
+.se{text-align:center;color:rgba(255,255,255,.28);font-size:.92rem;font-weight:600;padding:28px;grid-column:1/-1;}
+.footer{text-align:center;margin-top:32px;font-size:.77rem;color:var(--soft);font-weight:700;letter-spacing:1px;}
+@media(max-width:560px){.hero{padding:44px 20px 62px;}h1{letter-spacing:-.5px;}.sumcard{padding:24px 16px 20px;}.slist{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="lemons" id="lemons"></div>
+</div>
+
+<div class="page">
+  <header>
+    <div class="hero">
+      <div class="hero-lem-l">🍋</div>
+      <div class="hero-lem-r">🍋</div>
+      <div class="hero-inner">
+        <div class="flag-row">
+          <div class="stripe"></div>
+          <span style="font-size:1.9rem;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))">🇮🇱</span>
+          <div class="stripe"></div>
+        </div>
+        <h1>מפגש <mark>עצמאות</mark></h1>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,28 C200,70 400,0 600,32 C800,64 1050,6 1250,34 C1350,48 1400,20 1440,28 L1440,56 L0,56 Z" fill="#F0FDFF"/>
+    </svg>
+  </header>
+
+  <div class="sync-bar" id="syncBar">
+    <div class="sync-dot loading" id="syncDot"></div>
+    <span id="syncTxt">מתחבר...</span>
+  </div>
+
+  <div class="sec"><div class="sec-l"></div><div class="sec-t">🍽️ אוכל</div><div class="sec-r"></div></div>
+  <div class="grid" id="gFood"></div>
+  <div class="sec"><div class="sec-l"></div><div class="sec-t">🥤 שתייה</div><div class="sec-r"></div></div>
+  <div class="grid" id="gDrinks"></div>
+  <div class="sec"><div class="sec-l"></div><div class="sec-t">🪑 לוגיסטיקה וציוד</div><div class="sec-r"></div></div>
+  <div class="grid" id="gLogistics"></div>
+  <div class="sec"><div class="sec-l"></div><div class="sec-t">🧒 פינת הילדים</div><div class="sec-r"></div></div>
+  <div class="grid" id="gKids"></div>
+
+  <div class="sumwrap">
+    <div class="sumcard">
+      <div class="sum-glow"></div>
+      <div class="sum-top">
+        <div class="sum-ttl">📋 מי מביא <span>מה?</span></div>
+        <button class="clrbtn" onclick="clearAll()">🗑 נקה הכל</button>
+      </div>
+      <div class="plbl"><span id="pTxt">0 פריטים נלקחו</span><span id="pPct">0%</span></div>
+      <div class="pbg"><div class="pfil" id="pFil" style="width:0%"></div></div>
+      <ul class="slist" id="slist"><li class="se">בחרו מי מביא מה ↑</li></ul>
+    </div>
+  </div>
+  <p class="footer">✨ מתעדכן לכולם בזמן אמת · יום עצמאות שמח! 🍋🇮🇱</p>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, onValue, update, remove, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+/* LEMONS */
+(function(){
+  const w=document.getElementById('lemons');
+  const sl=o=>`<svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="35" rx="46" ry="32" fill="#FFD600" stroke="#E6BB00" stroke-width="1.8" opacity="${o}"/><line x1="50" y1="3" x2="50" y2="67" stroke="#E6BB00" stroke-width="1.2" opacity="${o}"/><line x1="4" y1="35" x2="96" y2="35" stroke="#E6BB00" stroke-width="1.2" opacity="${o}"/><line x1="16" y1="8" x2="84" y2="62" stroke="#E6BB00" stroke-width=".9" opacity="${o}"/><line x1="84" y1="8" x2="16" y2="62" stroke="#E6BB00" stroke-width=".9" opacity="${o}"/><ellipse cx="50" cy="35" rx="15" ry="10" fill="rgba(255,255,255,0.22)" opacity="${o}"/></svg>`;
+  const rt=`<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="34" fill="none" stroke="#00BCD4" stroke-width="3" opacity=".55"/></svg>`;
+  const rl=`<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="32" fill="none" stroke="#FFD600" stroke-width="2.5" opacity=".45"/></svg>`;
+  for(let i=0;i<24;i++){
+    const el=document.createElement('div');el.className='lf';
+    const sz=38+Math.random()*82,left=Math.random()*95,dur=17+Math.random()*24,delay=Math.random()*36,r=Math.random();
+    el.style.cssText=`width:${sz}px;height:${sz*.72}px;left:${left}%;bottom:-100px;animation-duration:${dur}s;animation-delay:-${delay}s;`;
+    el.innerHTML=r<.55?sl(.9):r<.75?rt:rl;
+    w.appendChild(el);
+  }
+})();
+
+/* FIREBASE INIT */
+const firebaseConfig = {
+  apiKey: "AIzaSyDNaZrCaX6FHbgoSem4eHBb9-mOqV023BQ",
+  authDomain: "mifgash-atzmaut.firebaseapp.com",
+  databaseURL: "https://mifgash-atzmaut-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "mifgash-atzmaut",
+  storageBucket: "mifgash-atzmaut.firebasestorage.app",
+  messagingSenderId: "815345029336",
+  appId: "1:815345029336:web:360973da267b19ecf947ad"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const assignRef = ref(db, 'assignments');
+const customRef = ref(db, 'customItems');
+
+/* DATA */
+const FAM=["פנסו","צרפתי","לידור","עזורי","חלפון","קשאני","אשמי","נמרודי","אלמוג","רותם"];
+const MENU={
+  food:[
+    {id:"savory",title:"מלוח",icon:"🥗",cls:"c-savory",items:[
+      {id:"s1",name:"סלטים גדולים (קיסר / ירקות / פסטה)",emoji:"🥗"},
+      {id:"s2",name:"פיתות + טחינה + חומוס",emoji:"🫓"},
+      {id:"s3",name:"מגש גבינות + זיתים",emoji:"🧀"},
+      {id:"s4",name:"כריכים מגוונים עטופים",emoji:"🥪"},
+      {id:"s5",name:"קיש / פשטידה פרוסה",emoji:"🥧"},
+    ]},
+    {id:"eggs",title:"ביצים ומאפים מלוחים",icon:"🥚",cls:"c-eggs",items:[
+      {id:"e1",name:"ביצים קשות",emoji:"🥚"},
+      {id:"e2",name:"ביצים מקושקשות בתבנית",emoji:"🍳"},
+      {id:"e3",name:"בורקס / מאפינס מלוחים",emoji:"🥐"},
+      {id:"e4",name:"לחם שום / בייגל",emoji:"🥖"},
+    ]},
+    {id:"sweet",title:"מתוק",icon:"🍰",cls:"c-sweet",items:[
+      {id:"sw1",name:"עוגה / טארט פירות",emoji:"🍰"},
+      {id:"sw2",name:"מאפינס / עוגיות",emoji:"🧁"},
+      {id:"sw3",name:"מגש פירות חתוכים",emoji:"🍓"},
+      {id:"sw4",name:"לחמניות + ריבה + חמאה",emoji:"🥐"},
+    ]},
+  ],
+  drinks:[
+    {id:"soft",title:"שתייה קלה + מים",icon:"🧃",cls:"c-soft",items:[
+      {id:"d1",name:"מיץ + שתייה קרה לילדים",emoji:"🧃"},
+      {id:"d2",name:"מים מינרליים",emoji:"💧"},
+      {id:"d3",name:"לימונדה ביתית",emoji:"🍋"},
+      {id:"d4",name:"קרח + צידנית",emoji:"🧊"},
+    ]},
+    {id:"alc",title:"אלכוהול",icon:"🍷",cls:"c-alc",items:[
+      {id:"a1",name:"יין לבן / רוזה",emoji:"🥂"},
+      {id:"a2",name:"בירה קרה",emoji:"🍺"},
+      {id:"a3",name:"פרוסקו / ספריץ",emoji:"🫧"},
+    ]},
+  ],
+  logistics:[
+    {id:"tables",title:"שולחנות וישיבה",icon:"🪑",cls:"c-tables",items:[
+      {id:"l1",name:"שולחן מתקפל גדול",emoji:"🪑"},
+      {id:"l2",name:"שולחן מתקפל קטן",emoji:"🪑"},
+      {id:"l3",name:"כיסאות מתקפלים",emoji:"🪑"},
+      {id:"l4",name:"שמיכות / מזרניות",emoji:"🧸"},
+    ]},
+    {id:"gear",title:"ציוד חד פעמי",icon:"🎉",cls:"c-gear",items:[
+      {id:"g1",name:"צלחות + סכו\"ם חד פעמי",emoji:"🍽️"},
+      {id:"g2",name:"כוסות חד פעמי",emoji:"🥤"},
+      {id:"g3",name:"מפיות + מפת שולחן",emoji:"🎨"},
+      {id:"g4",name:"שקיות אשפה",emoji:"🗑️"},
+      {id:"g5",name:"קופסאות לשאריות",emoji:"📦"},
+      {id:"g6",name:"גריל נייד / מנגל",emoji:"🔥"},
+      {id:"g7",name:"אוהל / הצללה",emoji:"⛺"},
+    ]},
+  ],
+  kids:[
+    {id:"kfood",title:"אוכל לילדים",icon:"🍕",cls:"c-kfood",items:[
+      {id:"k1",name:"פיצה / לחמניות שוקולד",emoji:"🍕"},
+      {id:"k2",name:"שניצלים / נאגטס",emoji:"🍗"},
+      {id:"k3",name:"ירקות חתוכים + טבילה",emoji:"🥕"},
+    ]},
+    {id:"kfun",title:"בידור לילדים",icon:"🎈",cls:"c-kfun",items:[
+      {id:"kf1",name:"בלונים / קישוטי יום עצמאות",emoji:"🎈"},
+      {id:"kf2",name:"כדור / פריזבי / חבל קפיצה",emoji:"⚽"},
+      {id:"kf3",name:"צבעים / דפי צביעה",emoji:"🖍️"},
+    ]},
+  ],
+};
+
+let A={}, C={};
+
+/* SYNC STATUS */
+function setSync(state){
+  const dot=document.getElementById('syncDot'),txt=document.getElementById('syncTxt');
+  dot.className='sync-dot';
+  if(state==='ok'){txt.textContent='מסונכרן עם כולם ✓';}
+  else if(state==='loading'){dot.classList.add('loading');txt.textContent='מתחבר...';}
+  else{dot.classList.add('error');txt.textContent='שגיאת חיבור — בדקי אינטרנט';}
+}
+
+/* RENDER */
+const opts=v=>`<option value="">מי מביא?</option>`+FAM.map(f=>`<option value="${f}"${v===f?' selected':''}>${f}</option>`).join('');
+
+function buildCard(sec,cont){
+  const items=[...sec.items,...(C[sec.id]||[])];
+  const card=document.createElement('div');
+  card.className='card';card.id='card-'+sec.id;
+  card.innerHTML=`
+    <div class="ch ${sec.cls}"><div class="c-ico">${sec.icon}</div><div class="c-ttl">${sec.title}</div></div>
+    <div class="c-body">
+      ${items.map(it=>{const v=A[it.id]||'';return`<div class="irow"><span class="ie">${it.emoji}</span><span class="in">${it.name}</span><select class="fam${v?' taken':''}" data-id="${it.id}" onchange="onSel(this)">${opts(v)}</select></div>`;}).join('')}
+      <div class="addr"><div class="addf">
+        <input class="ade" type="text" maxlength="2" placeholder="😊" id="emj-${sec.id}">
+        <input class="adi" type="text" placeholder="הוסף פריט..." id="inp-${sec.id}">
+        <button class="adb" onclick="addItem('${sec.id}')">+</button>
+      </div></div>
+    </div>`;
+  cont.appendChild(card);
+}
+
+function renderAll(){
+  const m={food:'gFood',drinks:'gDrinks',logistics:'gLogistics',kids:'gKids'};
+  Object.entries(m).forEach(([cat,gid])=>{
+    const g=document.getElementById(gid);g.innerHTML='';
+    MENU[cat].forEach(s=>buildCard(s,g));
+  });
+  renderSum();
+}
+
+function allItems(){return Object.values(MENU).flat().flatMap(s=>[...s.items,...(C[s.id]||[])]);}
+
+function renderSum(){
+  const list=document.getElementById('slist'),items=allItems(),total=items.length,byF={};
+  Object.entries(A).forEach(([id,fam])=>{const it=items.find(i=>i.id===id);if(!it)return;if(!byF[fam])byF[fam]=[];byF[fam].push(it.emoji+' '+it.name);});
+  const taken=Object.keys(A).length,pct=total>0?Math.round(taken/total*100):0;
+  document.getElementById('pTxt').textContent=`${taken} מתוך ${total} פריטים נלקחו`;
+  document.getElementById('pPct').textContent=pct+'%';
+  document.getElementById('pFil').style.width=pct+'%';
+  if(!Object.keys(byF).length){list.innerHTML='<li class="se">בחרו מי מביא מה ↑</li>';return;}
+  list.innerHTML=Object.entries(byF).map(([fam,its])=>`<li class="si"><div class="sf">משפחת ${fam}</div><div class="sit">${its.join('<br>')}</div></li>`).join('');
+}
+
+/* FIREBASE LISTENERS */
+let firstLoad=true;
+onValue(assignRef, snap=>{
+  A=snap.val()||{};
+  if(firstLoad){firstLoad=false;setSync('ok');}
+  renderAll();
+}, ()=>setSync('error'));
+
+onValue(customRef, snap=>{
+  C=snap.val()||{};
+  renderAll();
+});
+
+/* ACTIONS — global so onclick works */
+window.onSel=function(sel){
+  const id=sel.dataset.id;
+  if(sel.value){update(assignRef,{[id]:sel.value});}
+  else{remove(ref(db,'assignments/'+id));}
+};
+
+window.addItem=function(sid){
+  const ni=document.getElementById('inp-'+sid),ei=document.getElementById('emj-'+sid);
+  const name=ni.value.trim();if(!name){ni.focus();return;}
+  const emoji=ei.value.trim()||'➕',id='c-'+sid+'-'+Date.now();
+  const existing=Array.isArray(C[sid])?C[sid]:[];
+  set(ref(db,'customItems/'+sid),[...existing,{id,name,emoji}]);
+  ni.value='';ei.value='';
+};
+
+window.clearAll=function(){
+  if(confirm('לנקות את כל הבחירות?')){set(assignRef,{});}
+};
+</script>
+
+</body>
+</html><!DOCTYPE html>
+
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מפגש עצמאות 🍋</title>
+<style>
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "SF Pro Text", "Roboto", sans-serif;
+}
+:root {
+  --sky:   #E0F7FA;
+  --sky3:  #F0FDFF;
+  --aqua:  #00BCD4;
+  --aqua2: #0097A7;
+  --aqua3: #006064;
+  --sun:   #FFD600;
+  --sun2:  #FFF176;
+  --white: #FFFFFF;
+  --dark:  #003338;
+  --mid:   #005F67;
+  --soft:  #4DB6C4;
+  --border:#B2EBF2;
+  --card:  #FFFFFFEE;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--sky3);
+  color: var(--dark);
+  direction: rtl;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.bg { position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden; }
+.blob { position:absolute;border-radius:50%;filter:blur(72px);opacity:.38;animation:drift ease-in-out infinite alternate; }
+.b1{width:500px;height:500px;background:#B2EBF2;top:-180px;right:-160px;animation-duration:11s;}
+.b2{width:380px;height:380px;background:#FFF9C4;bottom:-130px;left:-100px;animation-duration:14s;animation-delay:-5s;}
+.b3{width:280px;height:280px;background:#B2DFDB;top:45%;left:48%;animation-duration:17s;animation-delay:-8s;}
+@keyframes drift{from{transform:translate(0,0)scale(1)}to{transform:translate(28px,38px)scale(1.07)}}
+.lemons{position:absolute;inset:0;}
+.lf{position:absolute;opacity:0;animation:rise linear infinite;}
+@keyframes rise{0%{opacity:0;transform:translateY(0)rotate(0deg)}7%{opacity:.15}90%{opacity:.15}100%{opacity:0;transform:translateY(-108vh)rotate(360deg)}}
+.page{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 18px 100px;}
+header{margin:0 -18px;}
+.hero{background:linear-gradient(155deg,#003D40 0%,#00696E 42%,#00ACC1 100%);padding:64px 40px 82px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;width:700px;height:700px;top:-260px;left:50%;transform:translateX(-50%);background:conic-gradient(from 0deg,transparent 0deg,rgba(255,214,0,.11) 8deg,transparent 16deg,transparent 24deg,rgba(255,214,0,.08) 32deg,transparent 40deg,transparent 48deg,rgba(255,214,0,.11) 56deg,transparent 64deg,transparent 72deg,rgba(255,214,0,.08) 80deg,transparent 88deg,transparent 96deg,rgba(255,214,0,.11) 104deg,transparent 112deg,transparent 120deg,rgba(255,214,0,.08) 128deg,transparent 136deg,transparent 144deg,rgba(255,214,0,.11) 152deg,transparent 160deg,transparent 168deg,rgba(255,214,0,.08) 176deg,transparent 360deg);pointer-events:none;}
+.hero-lem-l{position:absolute;bottom:-10px;left:16px;font-size:9rem;opacity:.15;transform:rotate(-20deg);pointer-events:none;}
+.hero-lem-r{position:absolute;top:8px;right:14px;font-size:7rem;opacity:.15;transform:rotate(32deg);pointer-events:none;}
+.hero-inner{position:relative;z-index:1;}
+.flag-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:26px;}
+.stripe{width:62px;height:3px;background:var(--sun);border-radius:2px;}
+h1{font-size:clamp(3.2rem,10vw,5.8rem);font-weight:800;color:white;line-height:1.0;letter-spacing:-1px;text-shadow:0 4px 28px rgba(0,40,44,.4);}
+h1 mark{background:var(--sun);color:var(--dark);border-radius:10px;padding:0 10px 2px;display:inline-block;text-shadow:none;box-shadow:0 3px 14px rgba(255,214,0,.5);}
+.wave{display:block;width:calc(100% + 36px);margin:-2px -18px 0;}
+.sync-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;background:rgba(0,188,212,.1);border-bottom:1px solid var(--border);font-size:.82rem;font-weight:700;color:var(--aqua2);position:sticky;top:0;z-index:99;backdrop-filter:blur(12px);}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:#4CAF50;flex-shrink:0;animation:pulse 2s ease infinite;}
+.sync-dot.loading{background:var(--sun);animation:spin 1s linear infinite;}
+.sync-dot.error{background:#EF5350;animation:none;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.sec{display:flex;align-items:center;gap:14px;margin:50px 0 20px;}
+.sec-l{flex:1;height:2px;background:linear-gradient(to left,transparent,var(--aqua));border-radius:2px;}
+.sec-r{flex:1;height:2px;background:linear-gradient(to right,transparent,var(--aqua));border-radius:2px;}
+.sec-t{font-size:1.2rem;font-weight:800;color:var(--aqua2);white-space:nowrap;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:16px;}
+.card{background:var(--card);border:2px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:0 4px 20px rgba(0,96,100,.1);animation:pop .5s cubic-bezier(.34,1.56,.64,1) both;transition:transform .2s,box-shadow .2s;backdrop-filter:blur(8px);}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 36px rgba(0,96,100,.17);}
+@keyframes pop{from{opacity:0;transform:scale(.88)translateY(18px)}to{opacity:1;transform:scale(1)translateY(0)}}
+.card:nth-child(1){animation-delay:.04s}.card:nth-child(2){animation-delay:.09s}.card:nth-child(3){animation-delay:.13s}.card:nth-child(4){animation-delay:.17s}.card:nth-child(5){animation-delay:.21s}.card:nth-child(6){animation-delay:.25s}.card:nth-child(7){animation-delay:.29s}.card:nth-child(8){animation-delay:.33s}
+.ch{padding:14px 18px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;}
+.ch::after{content:'';position:absolute;top:-50%;right:-20%;width:110px;height:110px;background:rgba(255,255,255,.08);border-radius:50%;}
+.c-savory{background:linear-gradient(120deg,#00838F,#005F64);}
+.c-eggs{background:linear-gradient(120deg,#EF6C00,#BF360C);}
+.c-sweet{background:linear-gradient(120deg,#AD1457,#6A0F37);}
+.c-soft{background:linear-gradient(120deg,#1565C0,#0D47A1);}
+.c-alc{background:linear-gradient(120deg,#6A1B9A,#38006B);}
+.c-tables{background:linear-gradient(120deg,#2E7D32,#1A4A1C);}
+.c-gear{background:linear-gradient(120deg,#4E342E,#2C1810);}
+.c-kfood{background:linear-gradient(120deg,#C62828,#7F0000);}
+.c-kfun{background:linear-gradient(120deg,#558B2F,#2E5A0E);}
+.c-ico{width:36px;height:36px;background:rgba(255,255,255,.18);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;}
+.c-ttl{font-size:1.05rem;font-weight:800;color:white;text-shadow:0 1px 4px rgba(0,0,0,.2);}
+.c-body{padding:4px 0 2px;}
+.irow{display:flex;align-items:center;gap:10px;padding:9px 16px;border-bottom:1px solid rgba(178,235,242,.5);transition:background .13s;}
+.irow:last-of-type{border-bottom:none;}
+.irow:hover{background:var(--sky);}
+.ie{font-size:1rem;flex-shrink:0;}
+.in{flex:1;font-size:.9rem;font-weight:600;color:var(--mid);}
+select.fam{appearance:none;-webkit-appearance:none;border:2px solid var(--border);border-radius:10px;padding:5px 10px 5px 24px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Roboto",sans-serif;font-size:.76rem;font-weight:700;color:var(--soft);background:#E0F7FA;cursor:pointer;min-width:90px;max-width:128px;transition:all .18s;background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234DB6C4' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 7px center;direction:rtl;}
+select.fam:focus{outline:none;border-color:var(--aqua);background:white;}
+select.fam.taken{border-color:var(--aqua2);background:rgba(0,188,212,.12);color:var(--aqua3);}
+.addr{padding:9px 14px 13px;border-top:2px dashed rgba(178,235,242,.8);}
+.addf{display:flex;gap:6px;align-items:center;}
+.ade{width:40px;height:34px;border:2px solid var(--border);border-radius:10px;font-size:1rem;text-align:center;background:#E0F7FA;flex-shrink:0;transition:border-color .18s;}
+.ade:focus{outline:none;border-color:var(--aqua);background:white;}
+.adi{flex:1;height:34px;border:2px solid var(--border);border-radius:10px;padding:0 11px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Roboto",sans-serif;font-size:.83rem;font-weight:600;color:var(--dark);background:#E0F7FA;direction:rtl;transition:border-color .18s;}
+.adi::placeholder{color:var(--soft);font-weight:400;}
+.adi:focus{outline:none;border-color:var(--aqua);background:white;}
+.adb{width:34px;height:34px;flex-shrink:0;background:linear-gradient(135deg,var(--aqua),var(--aqua2));border:none;border-radius:10px;color:white;font-size:1.5rem;font-weight:300;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,188,212,.4);transition:transform .12s;}
+.adb:hover{transform:scale(1.08);}
+.adb:active{transform:scale(.92);}
+.sumwrap{margin-top:58px;animation:pop .6s .2s ease both;}
+.sumcard{background:linear-gradient(155deg,#002F33 0%,#005F67 55%,#0097A7 100%);border-radius:26px;padding:38px 34px 32px;position:relative;overflow:hidden;box-shadow:0 12px 52px rgba(0,48,52,.32);}
+.sumcard::before{content:'🍋';position:absolute;font-size:11rem;bottom:-30px;left:4px;opacity:.06;transform:rotate(-24deg);pointer-events:none;}
+.sumcard::after{content:'🍋';position:absolute;font-size:7rem;top:-6px;right:12px;opacity:.06;transform:rotate(28deg);pointer-events:none;}
+.sum-glow{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(255,214,0,.1) 0%,transparent 65%);top:-150px;left:50%;transform:translateX(-50%);pointer-events:none;}
+.sum-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:12px;position:relative;z-index:1;}
+.sum-ttl{font-size:1.85rem;font-weight:800;color:white;}
+.sum-ttl span{color:var(--sun);}
+.clrbtn{background:rgba(255,214,0,.14);border:2px solid rgba(255,214,0,.32);color:#FFF176;border-radius:12px;padding:7px 18px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Roboto",sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;transition:background .18s;}
+.clrbtn:hover{background:rgba(255,214,0,.24);}
+.plbl{display:flex;justify-content:space-between;font-size:.77rem;color:rgba(255,255,255,.45);margin-bottom:7px;font-weight:700;position:relative;z-index:1;}
+.pbg{height:6px;background:rgba(255,255,255,.12);border-radius:6px;overflow:hidden;margin-bottom:26px;position:relative;z-index:1;}
+.pfil{height:100%;background:linear-gradient(to left,var(--sun),var(--aqua));border-radius:6px;transition:width .42s ease;}
+.slist{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(192px,1fr));gap:10px;position:relative;z-index:1;}
+.si{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.13);border-radius:15px;padding:13px 15px;transition:background .15s,transform .15s;}
+.si:hover{background:rgba(255,255,255,.12);transform:translateY(-1px);}
+.sf{font-weight:800;font-size:.84rem;color:var(--sun);margin-bottom:5px;}
+.sit{font-size:.79rem;color:rgba(255,255,255,.75);font-weight:600;line-height:1.72;}
+.se{text-align:center;color:rgba(255,255,255,.28);font-size:.92rem;font-weight:600;padding:28px;grid-column:1/-1;}
+.footer{text-align:center;margin-top:32px;font-size:.77rem;color:var(--soft);font-weight:700;letter-spacing:1px;}
+@media(max-width:560px){.hero{padding:44px 20px 62px;}h1{letter-spacing:-.5px;}.sumcard{padding:24px 16px 20px;}.slist{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="lemons" id="lemons"></div>
+</div>
+
+<div class="page">
+  <header>
+    <div class="hero">
+      <div class="hero-lem-l">🍋</div>
+      <div class="hero-lem-r">🍋</div>
+      <div class="hero-inner">
+        <div class="flag-row">
+          <div class="stripe"></div>
+          <span style="font-size:1.9rem;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))">🇮🇱</span>
+          <div class="stripe"></div>
+        </div>
+        <h1>מפגש <mark>עצמאות</mark></h1>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,28 C200,70 400,0 600,32 C800,64 1050,6 1250,34 C1350,48 1400,20 1440,28 L1440,56 L0,56 Z" fill="#F0FDFF"/>
+    </svg>
+  </header>
+
+  <div class="sync-bar" id="syncBar">
+    <div class="sync-dot loading" id="syncDot"></div>
+    <span id="syncTxt">מתחבר...</span>
+  </div>
+
+  <div class="sec"><div class="sec-l"></div><div class="sec-t">🍽️ אוכל</div><div class="sec-r"></div></div>
+  <div class="grid" id="gFood"></div>
+  <div class="sec"><div class="sec-l"></div><div class="sec-t">🥤 שתייה</div><div class="sec-r"></div></div>
+  <div class="grid" id="gDrinks"></div>
+  <div class="sec"><div class="sec-l"></div><div class="sec-t">🪑 לוגיסטיקה וציוד</div><div class="sec-r"></div></div>
+  <div class="grid" id="gLogistics"></div>
+  <div class="sec"><div class="sec-l"></div><div class="sec-t">🧒 פינת הילדים</div><div class="sec-r"></div></div>
+  <div class="grid" id="gKids"></div>
+
+  <div class="sumwrap">
+    <div class="sumcard">
+      <div class="sum-glow"></div>
+      <div class="sum-top">
+        <div class="sum-ttl">📋 מי מביא <span>מה?</span></div>
+        <button class="clrbtn" onclick="clearAll()">🗑 נקה הכל</button>
+      </div>
+      <div class="plbl"><span id="pTxt">0 פריטים נלקחו</span><span id="pPct">0%</span></div>
+      <div class="pbg"><div class="pfil" id="pFil" style="width:0%"></div></div>
+      <ul class="slist" id="slist"><li class="se">בחרו מי מביא מה ↑</li></ul>
+    </div>
+  </div>
+  <p class="footer">✨ מתעדכן לכולם בזמן אמת · יום עצמאות שמח! 🍋🇮🇱</p>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, onValue, update, remove, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+/* LEMONS */
+(function(){
+  const w=document.getElementById('lemons');
+  const sl=o=>`<svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="35" rx="46" ry="32" fill="#FFD600" stroke="#E6BB00" stroke-width="1.8" opacity="${o}"/><line x1="50" y1="3" x2="50" y2="67" stroke="#E6BB00" stroke-width="1.2" opacity="${o}"/><line x1="4" y1="35" x2="96" y2="35" stroke="#E6BB00" stroke-width="1.2" opacity="${o}"/><line x1="16" y1="8" x2="84" y2="62" stroke="#E6BB00" stroke-width=".9" opacity="${o}"/><line x1="84" y1="8" x2="16" y2="62" stroke="#E6BB00" stroke-width=".9" opacity="${o}"/><ellipse cx="50" cy="35" rx="15" ry="10" fill="rgba(255,255,255,0.22)" opacity="${o}"/></svg>`;
+  const rt=`<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="34" fill="none" stroke="#00BCD4" stroke-width="3" opacity=".55"/></svg>`;
+  const rl=`<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="32" fill="none" stroke="#FFD600" stroke-width="2.5" opacity=".45"/></svg>`;
+  for(let i=0;i<24;i++){
+    const el=document.createElement('div');el.className='lf';
+    const sz=38+Math.random()*82,left=Math.random()*95,dur=17+Math.random()*24,delay=Math.random()*36,r=Math.random();
+    el.style.cssText=`width:${sz}px;height:${sz*.72}px;left:${left}%;bottom:-100px;animation-duration:${dur}s;animation-delay:-${delay}s;`;
+    el.innerHTML=r<.55?sl(.9):r<.75?rt:rl;
+    w.appendChild(el);
+  }
+})();
+
+/* FIREBASE INIT */
+const firebaseConfig = {
+  apiKey: "AIzaSyDNaZrCaX6FHbgoSem4eHBb9-mOqV023BQ",
+  authDomain: "mifgash-atzmaut.firebaseapp.com",
+  databaseURL: "https://mifgash-atzmaut-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "mifgash-atzmaut",
+  storageBucket: "mifgash-atzmaut.firebasestorage.app",
+  messagingSenderId: "815345029336",
+  appId: "1:815345029336:web:360973da267b19ecf947ad"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const assignRef = ref(db, 'assignments');
+const customRef = ref(db, 'customItems');
+
+/* DATA */
+const FAM=["פנסו","צרפתי","לידור","עזורי","חלפון","קשאני","אשמי","נמרודי","אלמוג","רותם"];
+const MENU={
+  food:[
+    {id:"savory",title:"מלוח",icon:"🥗",cls:"c-savory",items:[
+      {id:"s1",name:"סלטים גדולים (קיסר / ירקות / פסטה)",emoji:"🥗"},
+      {id:"s2",name:"פיתות + טחינה + חומוס",emoji:"🫓"},
+      {id:"s3",name:"מגש גבינות + זיתים",emoji:"🧀"},
+      {id:"s4",name:"כריכים מגוונים עטופים",emoji:"🥪"},
+      {id:"s5",name:"קיש / פשטידה פרוסה",emoji:"🥧"},
+    ]},
+    {id:"eggs",title:"ביצים ומאפים מלוחים",icon:"🥚",cls:"c-eggs",items:[
+      {id:"e1",name:"ביצים קשות",emoji:"🥚"},
+      {id:"e2",name:"ביצים מקושקשות בתבנית",emoji:"🍳"},
+      {id:"e3",name:"בורקס / מאפינס מלוחים",emoji:"🥐"},
+      {id:"e4",name:"לחם שום / בייגל",emoji:"🥖"},
+    ]},
+    {id:"sweet",title:"מתוק",icon:"🍰",cls:"c-sweet",items:[
+      {id:"sw1",name:"עוגה / טארט פירות",emoji:"🍰"},
+      {id:"sw2",name:"מאפינס / עוגיות",emoji:"🧁"},
+      {id:"sw3",name:"מגש פירות חתוכים",emoji:"🍓"},
+      {id:"sw4",name:"לחמניות + ריבה + חמאה",emoji:"🥐"},
+    ]},
+  ],
+  drinks:[
+    {id:"soft",title:"שתייה קלה + מים",icon:"🧃",cls:"c-soft",items:[
+      {id:"d1",name:"מיץ + שתייה קרה לילדים",emoji:"🧃"},
+      {id:"d2",name:"מים מינרליים",emoji:"💧"},
+      {id:"d3",name:"לימונדה ביתית",emoji:"🍋"},
+      {id:"d4",name:"קרח + צידנית",emoji:"🧊"},
+    ]},
+    {id:"alc",title:"אלכוהול",icon:"🍷",cls:"c-alc",items:[
+      {id:"a1",name:"יין לבן / רוזה",emoji:"🥂"},
+      {id:"a2",name:"בירה קרה",emoji:"🍺"},
+      {id:"a3",name:"פרוסקו / ספריץ",emoji:"🫧"},
+    ]},
+  ],
+  logistics:[
+    {id:"tables",title:"שולחנות וישיבה",icon:"🪑",cls:"c-tables",items:[
+      {id:"l1",name:"שולחן מתקפל גדול",emoji:"🪑"},
+      {id:"l2",name:"שולחן מתקפל קטן",emoji:"🪑"},
+      {id:"l3",name:"כיסאות מתקפלים",emoji:"🪑"},
+      {id:"l4",name:"שמיכות / מזרניות",emoji:"🧸"},
+    ]},
+    {id:"gear",title:"ציוד חד פעמי",icon:"🎉",cls:"c-gear",items:[
+      {id:"g1",name:"צלחות + סכו\"ם חד פעמי",emoji:"🍽️"},
+      {id:"g2",name:"כוסות חד פעמי",emoji:"🥤"},
+      {id:"g3",name:"מפיות + מפת שולחן",emoji:"🎨"},
+      {id:"g4",name:"שקיות אשפה",emoji:"🗑️"},
+      {id:"g5",name:"קופסאות לשאריות",emoji:"📦"},
+      {id:"g6",name:"גריל נייד / מנגל",emoji:"🔥"},
+      {id:"g7",name:"אוהל / הצללה",emoji:"⛺"},
+    ]},
+  ],
+  kids:[
+    {id:"kfood",title:"אוכל לילדים",icon:"🍕",cls:"c-kfood",items:[
+      {id:"k1",name:"פיצה / לחמניות שוקולד",emoji:"🍕"},
+      {id:"k2",name:"שניצלים / נאגטס",emoji:"🍗"},
+      {id:"k3",name:"ירקות חתוכים + טבילה",emoji:"🥕"},
+    ]},
+    {id:"kfun",title:"בידור לילדים",icon:"🎈",cls:"c-kfun",items:[
+      {id:"kf1",name:"בלונים / קישוטי יום עצמאות",emoji:"🎈"},
+      {id:"kf2",name:"כדור / פריזבי / חבל קפיצה",emoji:"⚽"},
+      {id:"kf3",name:"צבעים / דפי צביעה",emoji:"🖍️"},
+    ]},
+  ],
+};
+
+let A={}, C={};
+
+/* SYNC STATUS */
+function setSync(state){
+  const dot=document.getElementById('syncDot'),txt=document.getElementById('syncTxt');
+  dot.className='sync-dot';
+  if(state==='ok'){txt.textContent='מסונכרן עם כולם ✓';}
+  else if(state==='loading'){dot.classList.add('loading');txt.textContent='מתחבר...';}
+  else{dot.classList.add('error');txt.textContent='שגיאת חיבור — בדקי אינטרנט';}
+}
+
+/* RENDER */
+const opts=v=>`<option value="">מי מביא?</option>`+FAM.map(f=>`<option value="${f}"${v===f?' selected':''}>${f}</option>`).join('');
+
+function buildCard(sec,cont){
+  const items=[...sec.items,...(C[sec.id]||[])];
+  const card=document.createElement('div');
+  card.className='card';card.id='card-'+sec.id;
+  card.innerHTML=`
+    <div class="ch ${sec.cls}"><div class="c-ico">${sec.icon}</div><div class="c-ttl">${sec.title}</div></div>
+    <div class="c-body">
+      ${items.map(it=>{const v=A[it.id]||'';return`<div class="irow"><span class="ie">${it.emoji}</span><span class="in">${it.name}</span><select class="fam${v?' taken':''}" data-id="${it.id}" onchange="onSel(this)">${opts(v)}</select></div>`;}).join('')}
+      <div class="addr"><div class="addf">
+        <input class="ade" type="text" maxlength="2" placeholder="😊" id="emj-${sec.id}">
+        <input class="adi" type="text" placeholder="הוסף פריט..." id="inp-${sec.id}">
+        <button class="adb" onclick="addItem('${sec.id}')">+</button>
+      </div></div>
+    </div>`;
+  cont.appendChild(card);
+}
+
+function renderAll(){
+  const m={food:'gFood',drinks:'gDrinks',logistics:'gLogistics',kids:'gKids'};
+  Object.entries(m).forEach(([cat,gid])=>{
+    const g=document.getElementById(gid);g.innerHTML='';
+    MENU[cat].forEach(s=>buildCard(s,g));
+  });
+  renderSum();
+}
+
+function allItems(){return Object.values(MENU).flat().flatMap(s=>[...s.items,...(C[s.id]||[])]);}
+
+function renderSum(){
+  const list=document.getElementById('slist'),items=allItems(),total=items.length,byF={};
+  Object.entries(A).forEach(([id,fam])=>{const it=items.find(i=>i.id===id);if(!it)return;if(!byF[fam])byF[fam]=[];byF[fam].push(it.emoji+' '+it.name);});
+  const taken=Object.keys(A).length,pct=total>0?Math.round(taken/total*100):0;
+  document.getElementById('pTxt').textContent=`${taken} מתוך ${total} פריטים נלקחו`;
+  document.getElementById('pPct').textContent=pct+'%';
+  document.getElementById('pFil').style.width=pct+'%';
+  if(!Object.keys(byF).length){list.innerHTML='<li class="se">בחרו מי מביא מה ↑</li>';return;}
+  list.innerHTML=Object.entries(byF).map(([fam,its])=>`<li class="si"><div class="sf">משפחת ${fam}</div><div class="sit">${its.join('<br>')}</div></li>`).join('');
+}
+
+/* FIREBASE LISTENERS */
+let firstLoad=true;
+onValue(assignRef, snap=>{
+  A=snap.val()||{};
+  if(firstLoad){firstLoad=false;setSync('ok');}
+  renderAll();
+}, ()=>setSync('error'));
+
+onValue(customRef, snap=>{
+  C=snap.val()||{};
+  renderAll();
+});
+
+/* ACTIONS — global so onclick works */
+window.onSel=function(sel){
+  const id=sel.dataset.id;
+  if(sel.value){update(assignRef,{[id]:sel.value});}
+  else{remove(ref(db,'assignments/'+id));}
+};
+
+window.addItem=function(sid){
+  const ni=document.getElementById('inp-'+sid),ei=document.getElementById('emj-'+sid);
+  const name=ni.value.trim();if(!name){ni.focus();return;}
+  const emoji=ei.value.trim()||'➕',id='c-'+sid+'-'+Date.now();
+  const existing=Array.isArray(C[sid])?C[sid]:[];
+  set(ref(db,'customItems/'+sid),[...existing,{id,name,emoji}]);
+  ni.value='';ei.value='';
+};
+
+window.clearAll=function(){
+  if(confirm('לנקות את כל הבחירות?')){set(assignRef,{});}
+};
+</script>
+
+</body>
+</html>
